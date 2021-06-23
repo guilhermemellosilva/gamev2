@@ -13,7 +13,43 @@ class Obj:
         self.sprite.rect[0] = x
         self.sprite.rect[1] = y
 
-
+        self.frame = 1
+        self.tick = 0
 
     def drawing(self, window):
         self.group.draw(window)
+
+    def anim(self):
+        self.tick += 1
+        if self.tick >= 8:
+            self.tick = 0
+            self.frame += 1
+
+        if self.frame > 4:
+            self.frame = 1
+
+        self.sprite.image = pygame.image.load("assets/spider" + str(self.frame) + ".png")
+
+
+class Midoriya(Obj):
+
+    def __init__(self, image, x, y):
+        super().__init__(image, x, y)
+
+    def move_midoriya(self, event):
+        if event.type == pygame.MOUSEMOTION:
+            self.sprite.rect[0] = pygame.mouse.get()[0]
+            self.sprite.rect[1] = pygame.mouse.get_pos()[1]
+
+    def anim(self):
+        self.tick += 1
+        if self.tick >= 8:
+            self.tick = 0
+            self.frame += 1
+
+        if self.frame > 4:
+            self.frame = 1
+
+        self.sprite.image = pygame.image.load("assets/personagem.png")
+
+
