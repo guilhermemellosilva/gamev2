@@ -21,14 +21,16 @@ class Game:
         self.spider.drawing(window)
         self.livro1.drawing(window)
         self.midoriya.drawing(window)
+        self.midoriya.anim()
 
     def update(self):
         self.move_bg()
         self.spider.anim()
-        self.midoriya.anim()
         self.move_spiders()
         self.move_livro1()
-    
+        self.midoriya.colision(self.spider.group, "Spider")
+        self.midoriya.colision(self.livro1.group, "Livro1")
+   
     def move_bg(self):
         self.bg.sprite.rect[1] += 4
         self.bg2.sprite.rect[1] += 4
@@ -52,5 +54,4 @@ class Game:
         if self.livro1.sprite.rect[1] >= 700:
             self.livro1.sprite.kill()
             self.livro1 = Obj("assets/livro1.png", random.randrange(0, 300), -50)
-
 

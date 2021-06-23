@@ -29,6 +29,7 @@ class Main:
                 self.loop = False
 
             self.menu.events(events)    
+            self.game.midoriya.move_midoriya(events)
 
     def update(self):
         while self.loop:

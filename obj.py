@@ -38,8 +38,17 @@ class Midoriya(Obj):
 
     def move_midoriya(self, event):
         if event.type == pygame.MOUSEMOTION:
-            self.sprite.rect[0] = pygame.mouse.get()[0]
+            self.sprite.rect[0] = pygame.mouse.get_pos()[0]
             self.sprite.rect[1] = pygame.mouse.get_pos()[1]
+    
+    def colision(self, group, name):
+        name = name
+        colison = pygame.sprite.spritecollide(self.sprite, group, False)
+
+        if name == "Livro1" and colison:
+            print("Livro")
+        elif name == "Spider" and colison:
+            print("Spider")
 
     def anim(self):
         self.tick += 1
@@ -51,5 +60,3 @@ class Midoriya(Obj):
             self.frame = 1
 
         self.sprite.image = pygame.image.load("assets/personagem.png")
-
-
