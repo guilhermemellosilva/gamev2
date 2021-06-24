@@ -64,3 +64,17 @@ class Midoriya(Obj):
             self.frame = 1
 
         self.sprite.image = pygame.image.load("assets/personagem.png")
+
+class Text:
+    
+    def __init__(self, size, text):
+
+        self.font = pygame.font.SysFont("Arial bold", size)
+        self.render = self.font.render(text, False, (255, 255, 255))
+
+    def draw(self, window, x, y):
+        window.blit(self.render, (x, y))
+
+    def update_text(self, update):
+        self.render = self.font.render(update, False, (255, 255, 255))
+

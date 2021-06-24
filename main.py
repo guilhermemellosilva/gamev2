@@ -9,6 +9,11 @@ class Main:
         
         pygame.init()
 
+        pygame.mixer.init()
+        pygame.mixer.music.load("assets/mhasound.wav")
+        pygame.mixer.music.play(-1)
+
+
         self.window = pygame.display.set_mode([320, 640])
         self.title = pygame.display.set_caption("My Hero Academia")
 

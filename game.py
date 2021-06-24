@@ -1,5 +1,5 @@
 import pygame
-from obj import Obj, Midoriya
+from obj import Obj, Midoriya, Text
 import random
 
 class Game:
@@ -14,6 +14,9 @@ class Game:
         self.midoriya =Midoriya("assets/personagem.png", 150, 500)
 
         self.change_scene = False
+
+        self.score = Text(90, "0")
+        self.lifes = Text(45, "3")
     
     def draw(self, window):
         self.bg.draw(window)
@@ -21,6 +24,8 @@ class Game:
         self.spider.draw(window)
         self.livro1.draw(window)
         self.midoriya.draw(window)
+        self.score.draw(window, 150, 50)
+        self.lifes.draw(window, 50, 50)
 
 
     def update(self):
@@ -32,6 +37,8 @@ class Game:
         self.midoriya.colision(self.livro1.group, "Livro1")
         self.midoriya.anim()
         self.gameover()
+        self.score.update_text(str(self.midoriya.pts))
+        self.lifes.update_text(str(self.midoriya.life))
    
     def move_bg(self):
         self.bg.sprite.rect[1] += 4
