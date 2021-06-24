@@ -36,6 +36,10 @@ class Midoriya(Obj):
     def __init__(self, image, x, y):
         super().__init__(image, x, y)  
 
+        pygame.mixer.init()
+        self.sound_pts = pygame.mixer.Sound("assets/moeda.wav")
+        self.sound_life = pygame.mixer.Sound("assets/dano.wav")
+
         self.life = 3
         self.pts = 0
 
@@ -50,8 +54,10 @@ class Midoriya(Obj):
 
         if name == "Livro1" and colison:
             self.pts += 1
+            self.sound_pts.play()
         elif name == "Spider" and colison:
             self.life -= 1
+            self.sound_life.play()
 
 
     def anim(self):
