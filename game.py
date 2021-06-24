@@ -16,12 +16,12 @@ class Game:
         self.change_scene = False
     
     def draw(self, window):
-        self.bg.drawing(window)
-        self.bg2.drawing(window)
-        self.spider.drawing(window)
-        self.livro1.drawing(window)
-        self.midoriya.drawing(window)
-        self.midoriya.anim()
+        self.bg.draw(window)
+        self.bg2.draw(window)
+        self.spider.draw(window)
+        self.livro1.draw(window)
+        self.midoriya.draw(window)
+
 
     def update(self):
         self.move_bg()
@@ -30,6 +30,8 @@ class Game:
         self.move_livro1()
         self.midoriya.colision(self.spider.group, "Spider")
         self.midoriya.colision(self.livro1.group, "Livro1")
+        self.midoriya.anim()
+        self.gameover()
    
     def move_bg(self):
         self.bg.sprite.rect[1] += 4
@@ -55,3 +57,6 @@ class Game:
             self.livro1.sprite.kill()
             self.livro1 = Obj("assets/livro1.png", random.randrange(0, 300), -50)
 
+    def gameover(self):
+        if self.midoriya.life <= 0:
+            self.change_scene = True
